@@ -1,0 +1,84 @@
+#Rubbish code, full of bugs but does what I need it to do
+
+#initilise variables
+reserve = 0
+names = []
+bids = []
+bidding = "y"
+counter = 0 #for parralell lists
+
+#validate input
+def ask(question,error,dtype):
+    #validates input
+    #input: question, error message, variable being set, data type
+    #output: returns input
+    v = dtype
+    while True:
+        try:
+           v  = dtype(input(question))
+        except ValueError:
+            print(error)
+        else:
+            break
+    return v
+
+#validate names
+def getName():
+    while True:
+        name = input("What is your name?")
+        if len(name) > 2 and len(name) < 51:
+            break
+        else:
+            print("A name should be between 3 and 50")
+    return name
+
+#get winner
+def winner(highest):
+    count = 0
+    while True:
+        if bids[count] == highest:
+            name = names[count]
+            return name
+            break
+        else:
+            count += 1
+
+
+
+#main program
+reserve = ask("What is the reserve?", "Please enter a number", float)
+print("The reserve is" , reserve)
+print("The reserve price is:", reserve)
+while bidding == "y":
+    print("What is your name?")
+    names.append(getName())
+    print(names[counter])
+    print("What is your bid?")
+    bids.append(ask("What is your bid?", "Please enter a number", float))
+    print(bids[counter])
+    counter += 1
+    bidding = input("If you want to end the auction enter y if you want to continue enter anything else")
+    if bidding == "y":
+        bidding = "n"
+    else:
+        bidding = "y"
+print("The reserve was:", reserve)
+highest = max(bids)
+name = winner(highest)
+print("The winner is: " + name)
+print("With a bid of: ", highest)
+if highest >=reserve:
+    print("Which was greater than the reserve of: ", reserve)
+else:
+    print("Which was not greater than the reserve of: ", reserve)
+
+
+
+
+
+
+
+
+
+
+
