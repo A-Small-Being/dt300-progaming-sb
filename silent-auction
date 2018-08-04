@@ -1,4 +1,11 @@
-#Rubbish code, full of bugs but does what I need it to do
+#--------------------------------------------------
+#Name: silent-auction
+#Purpose: runs silent auction
+#Notes: Rubbish code, full of bugs but does what I need it to do
+#Version history:
+#   none
+#--------------------------------------------------
+
 
 #initilise variables
 reserve = 0
