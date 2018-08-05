@@ -1,0 +1,49 @@
+#-------------------------------------------------------------------------------
+# Name:        movies
+# Purpose:     object contains info about films & calculates net profit
+# Author:      aSmallBeing
+# Version history:
+#    none
+#-------------------------------------------------------------------------------
+
+import doctest
+
+class Movie():
+    def __init__(self,title,director,cost,revenue):
+        self.title = title
+        self.director = director
+        self.cost = cost
+        self.revenue = revenue
+        self.net = self.netProfit()
+
+    def netProfit(self):
+        """
+        >>> test = Movie("A movie","A dude",100,50)
+        >>> print(test.net)
+        -50
+        """
+        self.net = self.revenue-self.cost
+        return self.net
+
+    def displayData(self):
+        """
+        >>> test =  Movie("A movie","A dude",100,50)
+        >>> test.displayData()
+        Title: A movie
+        Director: A dude
+        Cost: 100
+        Revenue: 50
+        Net Profit: -50
+        """
+        print("Title:" , self.title)
+        print("Director:" , self.director)
+        print("Cost:" , self.cost)
+        print("Revenue:" , self.revenue)
+        print("Net Profit:" , self.net)
+
+#main routin
+if __name__ == "__main__":
+    m1 = Movie("Call me by your name","A dude",10000,20000)
+    m1.displayData()
+
+    doctest.testmod()
