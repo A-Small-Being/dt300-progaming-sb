@@ -1,0 +1,34 @@
+#-------------------------------------------------------------------------------
+# Name:        basketball
+# Purpose:     create an object for basketball players
+#
+# Author:      aSmallBeing
+#
+# Created:     05/08/2018
+# Version history:
+#    none
+#-------------------------------------------------------------------------------
+
+import doctest
+
+class BasketBallPlayer:
+    def __init__(self,name,games,points):
+        self.player = name
+        self.gamesPlayed = games
+        self.pointsScored = points
+
+    def display_average(self):
+        """
+        >>> test = BasketBallPlayer("Karen", 20, 80)
+        >>> test.display_average()
+        Player: Karen Average points scored per game: 40
+        """
+        self.average = self.pointsScored/self.gamesPlayed
+        print("Player:" , self.player , "Average points scored per game:" , self.average)
+#main routine
+if __name__ == "__main__":
+    b1 = BasketBallPlayer("Bob",10,20)
+    b1.display_average()
+
+    doctest.testmod()
+
