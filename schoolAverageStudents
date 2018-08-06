@@ -1,0 +1,45 @@
+#-------------------------------------------------------------------------------
+# Name:        schoolAverageStudents
+# Purpose:     object for infomation about school(input via functions) and calculates average students
+# Author:      aSmallBeing
+#-------------------------------------------------------------------------------
+import doctest
+
+class School:
+    def __init__(self,name,roll,classRooms):
+        self.name = name
+        self.roll = roll
+        self.classRooms = classRooms
+        self.average = self.average_students()
+
+    def average_students(self):
+        self.average = self.roll/self.classRooms
+        return self.average
+
+    def displaySchool(self):
+        """
+        >>> test = School("a school",10,2)
+        >>> test.displaySchool()
+        a school has about 5.0 students per class
+        """
+        print(self.name , "has about" , self.average , "students per class")
+
+#get school info function
+def schoolInput():
+    info = []
+    name = input("What is the school name?")
+    info.append(name)
+    roll = int(input("How many students? (int)"))
+    info.append(roll)
+    classRooms = int(input("How many class rooms? (int)"))
+    info.append(classRooms)
+    return info
+
+#main routine
+if __name__ == "__main__":
+    schoolData = schoolInput()
+    s1 = School(schoolData[0],schoolData[1],schoolData[2])
+    s1.displaySchool()
+
+    doctest.testmod()
+
