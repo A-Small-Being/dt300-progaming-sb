@@ -1,0 +1,72 @@
+#-------------------------------------------------------------------------------
+# Name:        books-csv-v2
+# Purpose:     populates libary list with book objects instances of Book
+# Author:      aSmallBeing
+#
+# Versioning:  books-csv - creats instances and appends to list
+#              books-csv-v2 - writes to csv file
+#
+# Notes:       Not unbreakable - unvalidated input
+#-------------------------------------------------------------------------------
+import csv
+
+class Book:
+    def __init__(self,title,author,pages,words,pd):
+        """class constructure for book class. pd: publication date"""
+        self.title = title
+        self.author = author
+        self.pages = pages
+        self.words = words
+        self.pd = pd
+        self.aveWordsPP = int(words/pages)    #average words per page
+    def printData(self):
+        """prints data from object"""
+        print(self.title , self.author , self.pages , self.words , self.pd , self.aveWordsPP)
+    def makeList(self):
+        """Makes list of data from object to write to csv"""
+        data = []
+        data.append(self.title)
+        data.append(self.author)
+        data.append(self.pages)
+        data.append(self.words)
+        data.append(self.pd)
+        data.append(self.aveWordsPP)
+        return data
+
+def doneYet():
+   x = input("Are you done? y or n")
+   if x == "y": #if done inputting = false
+        x = False
+   else:    #if not done inputting = true
+        x = True
+   return x
+
+def getBook():
+    book = []
+    title = input("What is the title?")
+    book.append(title)
+    author = input("Who was the author/authors?")
+    book.append(author)
+    pages = int(input("How many pages?"))
+    book.append(pages)
+    words = int(input("How many words?"))
+    book.append(words)
+    pd = input("What was the year of publication?")
+    book.append(pd)
+    return book
+
+#main method
+if __name__ == "__main__":
+    inputting = True
+    library = [["Title","Author","Pages","Words","Publication Date","Average Words per Page"]]
+    while inputting == True:
+        bookData = getBook()
+        book = Book(bookData[0] , bookData[1] , bookData[2] , bookData[3] , bookData[4])
+        library.append(book.makeList())
+        inputting = doneYet()
+
+    myFile = open('csv-library.csv', 'w')
+    with myFile:
+        writer = csv.writer(myFile)
+        writer = writer.writerows(library)
+
